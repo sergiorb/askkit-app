@@ -19,6 +19,10 @@ askkitApp.config(['$routeProvider',
         templateUrl: 'partials/poll-detail.html',
         controller: 'pollDetailCtrl'
       }).
+      when('/options/:optionId', {
+        templateUrl: 'partials/option-detail.html',
+        controller: 'optionDetailCtrl'
+      }).
       otherwise({
         redirectTo: '/polls'
       });

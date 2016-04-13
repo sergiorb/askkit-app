@@ -1,5 +1,10 @@
 <div class="container-fluid">
   <div class="row">
+    <div class="col-md-12">
+      <h2>Askkit</h2>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-md-3">
       <!--Sidebar content-->
 
@@ -14,7 +19,7 @@
           <a href="#/polls/{{poll.id}}">{{poll.title}}</a>
           <ul class="options">
             <li ng-repeat="option in poll.options" class="">
-              <p>{{option.optionText}}</p>
+              <p><a href="#/options/{{option.id}}">{{option.optionText}}</a></p>
             </li>
           </ul>
         </li>

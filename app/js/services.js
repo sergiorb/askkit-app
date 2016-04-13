@@ -23,3 +23,16 @@ askkitServices.factory('poll', ['$resource', 'askkitConfig',
     });
   }]);
 
+askkitServices.factory('option', ['$resource', 'askkitConfig',
+  function($resource, askkitConfig){
+    
+    var api_root = askkitConfig.api_root;
+
+  	return $resource(api_root + '/api/v1/options/:optionId/?format=json', {optionId:'@id'},{
+      query : {
+        method : 'GET',
+        isArray : false
+      }
+    });
+  }]);
+
