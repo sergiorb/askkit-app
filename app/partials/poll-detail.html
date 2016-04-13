@@ -1,0 +1,21 @@
+
+<h1>{{poll.title}}</h1>
+
+<div>{{poll.context}}</div>
+
+<p>Date Begin: {{poll.date_begin}}</p>
+<p>Date end: {{poll.date_end}}</p>
+<p>Is active?: {{poll.is_active}}</p>
+<p>Is public?: {{poll.public}}</p>
+<p>Anon allowedd?: {{poll.anon_allowed}}</p>
+<p>Total votes: {{poll.votes}}</p>
+
+<ul class="options">
+	<li ng-repeat="option in poll.options" class="">
+	<p>{{option.optionText}}</p>
+	<ul>
+		<li>{{option.votes}}</li>
+		<li>{{option.percentage}}%</li>
+	</ul>
+	</li>
+</ul>

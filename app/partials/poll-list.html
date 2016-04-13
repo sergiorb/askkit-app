@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <!--Sidebar content-->
+
+      Search: <input ng-model="query">
+
+    </div>
+    <div class="col-md-9">
+      <!--Body content-->
+
+      <ul class="">
+        <li ng-repeat="poll in polls.results | filter:query" class="">
+          <a href="#/polls/{{poll.id}}">{{poll.title}}</a>
+          <ul class="options">
+            <li ng-repeat="option in poll.options" class="">
+              <p>{{option.optionText}}</p>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</div>
