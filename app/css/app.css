@@ -1,0 +1,31 @@
+.app-header .app-title {
+	border-bottom: 1px solid gray;
+}
+
+.app-header .app-title span {
+	font-size: 2.1em;
+}
+
+.poll-list .header > div > p {
+	border-bottom: 1px solid gray;
+}
+
+.poll-detail .header {
+	text-align: center;
+}
+
+.poll-detail .header .data {
+	text-align: left;
+}
+
+.poll-detail .votes {
+	padding-top: 1em;
+}
+
+.poll-detail .no-votes {
+	text-align: center;
+}
+
+.option-detail .option {
+	text-align: center;
+}

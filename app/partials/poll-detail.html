@@ -1,28 +1,53 @@
-<div class="container-fluid">
-	<div class="row">
+<div class="container-fluid poll-detail">
+	<div class="row header">
 		<div class="col-md-12">
+			<h1>{{poll.title}}</h1>
+		</div>
+		<div class="col-md-6 col-md-offset-3 data">
+			<p><strong>Date Begin:</strong> {{poll.date_begin}}</p>
+			<p ng-show="poll.date_end"><strong>Date end:</strong> {{poll.date_end}}</p>
+			<p ng-hide="poll.date_end"><strong>Date end:</strong> This poll has not an end.</p>
+			<p ng-show="poll.is_active"><strong>Is active?:</strong> This poll can voted.</p>
+			<p ng-hide="poll.is_active"><strong>Is active?:</strong> You can't vote this poll.</p>
+			<p ng-show="poll.public"><strong>Is public?:</strong> Anyone can see this poll.</p>
+			<p ng-hide="poll.public"><strong>Is public?:</strong> This is a private poll.</p>
+			<p ng-show="poll.anon_allowed"><strong>Anon allowed?:</strong> You can vote this anonymously.</p>
+			<p ng-hide="poll.anon_allowed"><strong>Anon allowed?:</strong> Anonymously votes <strong>are not permited</strong> for this poll.</p>
+			<p><strong>Total votes:</strong> {{poll.votes}}</p>
+		</div>
+	</div>
+	<div class="row context" ng-show="poll.context">
+		<div class="col-md-12">
+			<div>{{poll.context}}</div>
+		</div>
+	</div>
 
-		<h1>{{poll.title}}</h1>
+	<div class="row votes" ng-show="poll.votes">
 
-		<div>{{poll.context}}</div>
+		<div class="col-md-6" >
+			<canvas  id="doughnut" class="chart chart-doughnut" chart-data="data" chart-labels="labels"></canvas>
+		</div>
 
-		<p>Date Begin: {{poll.date_begin}}</p>
-		<p>Date end: {{poll.date_end}}</p>
-		<p>Is active?: {{poll.is_active}}</p>
-		<p>Is public?: {{poll.public}}</p>
-		<p>Anon allowedd?: {{poll.anon_allowed}}</p>
-		<p>Total votes: {{poll.votes}}</p>
-
-		<ul class="options">
-			<li ng-repeat="option in poll.options" class="">
-				<p>{{option.optionText}}</p>
-				<ul>
-					<li>{{option.votes}}</li>
-					<li>{{option.percentage}}%</li>
-				</ul>
-			</li>
-		</ul>
+		<div class="col-md-6">
+			<p ng-repeat="label in poll.options.labels"> {{label}}</p>
+			<ul class="options">
+				<li ng-repeat="option in poll.options" class="">
+					<p><a href="#/options/{{option.id}}">{{option.optionText}}</a></p>
+					<ul>
+						<li>Votes number: {{option.votes}}</li>
+						<li>Percentage: <strong>{{option.percentage}}%</strong></li>
+					</ul>
+				</li>
+			</ul>
 
 		</div>
 	</div>
+	<div class="row votes no-votes" ng-hide="poll.votes">
+		<div class="col-md-6 col-md-offset-3">
+			<h3>There is no votes for this poll yet.</h3>
+		</div>
+	</div>
 </div>
+
+
+

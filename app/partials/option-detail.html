@@ -1,5 +1,5 @@
-<div class="container-fluid">
-	<div class="row">
+<div class="container-fluid option-detail">
+	<div class="row option">
 		<div class="col-md-12">
 
 			<h1>{{option.optionText}}</h1>
@@ -8,6 +8,11 @@
 
 			<p>Percentage: {{option.percentage}}%</p>
 
+			<p>Created: {{option.created}}</p>
+
+			<p>Updated: {{option.modified}}</p>
+	
+			<p><a href="#/polls/{{option.poll}}">Back</a></p>
 		</div>
 	</div>
 </div>

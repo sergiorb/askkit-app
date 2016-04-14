@@ -2,7 +2,7 @@
   "version": "0.0.0",
   "private": true,
   "name": "askkit-app",
-  "description": "A tutorial application for AngularJS",
+  "description": "A polling system app",
   "repository": "https://github.com/sergiorb/askkit-app",
   "license": "",
   "devDependencies": {
@@ -10,7 +10,7 @@
     "bower": "^1.3.1"
   },
   "scripts": {
-    "postinstall": "bower install",
+    "postinstall": "./scripts/postinstall.sh",
 
     "prestart": "npm install",
     "start": "http-server -a 0.0.0.0 -p 8080"

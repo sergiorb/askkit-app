@@ -5,7 +5,8 @@
 var askkitApp = angular.module('askkit-app', [
   'ngRoute',
   'askkitControllers',
-  'askkitServices'
+  'askkitServices',
+  'chart.js'
 ]);
 
 askkitApp.config(['$routeProvider',
@@ -27,3 +28,4 @@ askkitApp.config(['$routeProvider',
         redirectTo: '/polls'
       });
   }]);
+
