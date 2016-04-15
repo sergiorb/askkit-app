@@ -1,7 +1,18 @@
 <div class="container-fluid poll-list">
   <div class="row">
     <div class="col-md-12 polls">
+      
       <p>A five elements random selection from our polls database:</p>
+
+      <div class="alert alert-danger" role="alert" ng-show="messages.error">
+        <button type="button" class="close" aria-label="Close" ng-click="messages.error = null">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+        {{messages.error.data.detail}}
+        <p ng-show="!messages.error.data">Can't connect to the server</p>
+      </div>
+
       <ul class="">
         <li ng-repeat="poll in random_polls.results | filter:query" class="">
           <a href="#/polls/{{poll.id}}">{{poll.title}}</a>

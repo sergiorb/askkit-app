@@ -14,14 +14,14 @@ askkitServices.factory('askkitConfig', function() {
   };
 });
 
-askkitServices.factory('poll', ['$resource', 'askkitConfig',
+askkitServices.factory('Poll', ['$resource', 'askkitConfig',
   function($resource, askkitConfig){
     
     var api_path = askkitConfig.api_path;
 
-  	return $resource(api_path + 'polls/:pollId/?format=json', {pollId:'@id'},{
-      query : {
-        method : 'GET',
+  	var Poll = $resource(api_path + 'polls/:pollId/?format=json', {pollId:'@id'},{
+      query: {
+        method: 'GET',
         isArray : false
       },
       random: {
@@ -33,17 +33,24 @@ askkitServices.factory('poll', ['$resource', 'askkitConfig',
         url: api_path + 'polls/randomset/?format=json'
       }
     });
+
+    return Poll;
+
   }]);
 
-askkitServices.factory('option', ['$resource', 'askkitConfig',
+askkitServices.factory('Option', ['$resource', 'askkitConfig',
   function($resource, askkitConfig){
     
     var api_path = askkitConfig.api_path;
 
   	return $resource(api_path + 'options/:optionId/?format=json', {optionId:'@id'},{
-      query : {
-        method : 'GET',
-        isArray : false
+      query: {
+        method: 'GET',
+        isArray: false
+      },
+      vote: {
+        method: 'POST',
+        url: api_path + 'options/:optionId/vote/?format=json'
       }
     });
   }]);

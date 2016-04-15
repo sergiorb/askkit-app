@@ -11,8 +11,28 @@
 			<p>Created: {{option.created}}</p>
 
 			<p>Updated: {{option.modified}}</p>
+
+			<button ng-click="vote()">vote this</button>
 	
 			<p><a href="#/polls/{{option.poll}}">Back</a></p>
+
+			<div class="alert alert-success" role="alert" ng-show="messages.success">
+				<button type="button" class="close" aria-label="Close" ng-click="messages.success = null">
+					<span aria-hidden="true">&times;</span>
+				</button>
+
+				{{messages.success.detail}}
+			</div>
+
+			<div class="alert alert-danger" role="alert" ng-show="messages.error">
+				<button type="button" class="close" aria-label="Close" ng-click="messages.error = null">
+					<span aria-hidden="true">&times;</span>
+				</button>
+
+				{{messages.error.data.detail}}
+			</div>
+
+			
 		</div>
 	</div>
 </div>
