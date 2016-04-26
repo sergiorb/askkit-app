@@ -11,6 +11,8 @@ askkitControllers.controller('pollListCtrl', ['$scope', 'Poll',
 			'success': null,
 			'error': null
 		};
+
+		$scope.info = true;
 		
 		$scope.random_polls = Poll.randomset(function(success){
 					$scope.messages.success = success;

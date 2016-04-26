@@ -1,5 +1,16 @@
 <div class="container-fluid poll-list">
   <div class="row">
+    <div class="col-md-12">
+      <div class="alert alert-info" role="alert" ng-show="info">
+        <button type="button" class="close" aria-label="Close" ng-click="info = null">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+        <p>Hi, <strong>site developer here</strong>: By this time, you only can see and vote pre-added polls done by me. Soon, I will add the feature to create them. <strong>Stay tune and thank you</strong> for using askkit.net!</p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-md-12 polls">
       
       <p>A five elements random selection from our polls database:</p>
