@@ -21,7 +21,7 @@
         </button>
 
         {{messages.error.data.detail}}
-        <p ng-show="!messages.error.data">Can't connect to the server</p>
+        <h4 ng-show="!messages.error.data">Can't connect to the server</h4>
       </div>
 
       <ul class="">
@@ -34,6 +34,10 @@
           </ul>
         </li>
       </ul>
+      
+      <div class="alert alert-info alert-loading" role="alert" ng-show="!random_polls.results && !messages.error">
+        <h4><i class="fa fa-refresh fa-spin" aria-hidden="true"></i> Loading...</h4>
+      </div>
 
     </div>
   </div>

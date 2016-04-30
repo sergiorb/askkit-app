@@ -56,6 +56,41 @@ askkitControllers.controller('pollDetailCtrl', ['$scope', '$routeParams', 'Poll'
 	};
 }]);
 
+askkitControllers.controller('pollCreateCtrl', ['$scope', '$routeParams', 'Poll', 
+	function($scope, $routeParams, Poll) {
+
+		$scope.poll = new Poll();
+
+		$scope.poll = {
+			options : [{'optionText': ''},{'optionText': ''}]
+		}
+
+		
+		$scope.addOption = function() {
+			$scope.poll.options.push({'optionText': ''});
+		}
+
+		$scope.removeOption = function() {
+			$scope.poll.options.pop();	
+		}
+
+		$scope.checkMinimumOptions = function () {
+			$scope.canDeleteOption = false;
+			if ($scope.poll.options.length > 2) {
+				$scope.canDeleteOption = true;
+			}
+		};
+
+		$scope.addPoll = function() {
+			$scope.poll.$save(function() {
+				$state.go('polls');
+			});
+		}
+
+		$scope.$watch('poll', function () {$scope.checkMinimumOptions();}, true);
+
+}]);
+
 askkitControllers.controller('optionDetailCtrl', ['$scope', '$routeParams', 'Option',
 	function($scope, $routeParams, Option) {
 

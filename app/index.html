@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <title>Askkit</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css" />
+    <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css">
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" href="css/app.css">
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
@@ -12,17 +13,21 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="js/controllers.js"></script>
     <script src="js/services.js"></script>
+    <script src="js/controllers.js"></script>
     <script src="js/app.js"></script>
   </head>
   <body>
     <div class="container-fluid poll-detail">
+
       <div class="row app-header">
         <div class="col-md-12">
          <p class="app-title"><span><a href="#/">Askkit.net</a></span> - A polling system website</p>
+         <a href="#/polls/create" class="btn btn-success">Createa new poll</a>
+        </br></br>
         </div>
       </div>
+
       <div class="row view-container">
           <div class="col-md-12">
             <div ng-view class="view-frame"></div>

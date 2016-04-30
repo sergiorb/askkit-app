@@ -16,6 +16,10 @@ askkitApp.config(['$routeProvider',
         templateUrl: 'partials/poll-list.html',
         controller: 'pollListCtrl'
       }).
+      when('/polls/create', {
+        templateUrl: 'partials/poll-create.html',
+        controller: 'pollCreateCtrl'
+      }).
       when('/polls/:pollId', {
         templateUrl: 'partials/poll-detail.html',
         controller: 'pollDetailCtrl'

@@ -1,70 +1,77 @@
 <div class="container-fluid poll-detail">
-	<div class="row header">
-		<div class="col-md-12">
-			<h1>{{poll.title}}</h1>
+
+	<div class="alert alert-danger" role="alert" ng-show="messages.error">
+        <button type="button" class="close" aria-label="Close" ng-click="messages.error = null">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+        {{messages.error.data.detail}}
+    	<h4 ng-show="!messages.error.data">Can't connect to the server</h4>
+    </div>
+
+	 <div class="alert alert-info alert-loading" role="alert" ng-show="!poll.title && !messages.error">
+        <h4><i class="fa fa-refresh fa-spin" aria-hidden="true"></i> Loading...</h4>
+      </div>
+
+	<div ng-show="poll.title">
+		<div class="row header">
+			<div class="col-md-12">
+				<h1>{{poll.title}}</h1>
+			</div>
+			<div class="col-md-6 col-md-offset-3 data">
+				<p><strong>Date Begin:</strong> {{poll.date_begin}}</p>
+				<p ng-show="poll.date_end"><strong>Date end:</strong> {{poll.date_end}}</p>
+				<p ng-hide="poll.date_end"><strong>Date end:</strong> This poll has not an end.</p>
+				<p ng-show="poll.is_active"><strong>Is active?:</strong> This poll can be voted.</p>
+				<p ng-hide="poll.is_active"><strong>Is active?:</strong> You can't vote this poll.</p>
+				<p ng-show="poll.public"><strong>Is public?:</strong> Anyone can see this poll.</p>
+				<p ng-hide="poll.public"><strong>Is public?:</strong> This is a private poll.</p>
+				<p ng-show="poll.anon_allowed"><strong>Anon allowed?:</strong> You can vote this anonymously.</p>
+				<p ng-hide="poll.anon_allowed"><strong>Anon allowed?:</strong> Anonymously votes <strong>are not permited</strong> for this poll.</p>
+				<p><strong>Total votes:</strong> {{poll.votes}}</p>
+
+			</div>
 		</div>
-		<div class="col-md-6 col-md-offset-3 data">
-			<p><strong>Date Begin:</strong> {{poll.date_begin}}</p>
-			<p ng-show="poll.date_end"><strong>Date end:</strong> {{poll.date_end}}</p>
-			<p ng-hide="poll.date_end"><strong>Date end:</strong> This poll has not an end.</p>
-			<p ng-show="poll.is_active"><strong>Is active?:</strong> This poll can be voted.</p>
-			<p ng-hide="poll.is_active"><strong>Is active?:</strong> You can't vote this poll.</p>
-			<p ng-show="poll.public"><strong>Is public?:</strong> Anyone can see this poll.</p>
-			<p ng-hide="poll.public"><strong>Is public?:</strong> This is a private poll.</p>
-			<p ng-show="poll.anon_allowed"><strong>Anon allowed?:</strong> You can vote this anonymously.</p>
-			<p ng-hide="poll.anon_allowed"><strong>Anon allowed?:</strong> Anonymously votes <strong>are not permited</strong> for this poll.</p>
-			<p><strong>Total votes:</strong> {{poll.votes}}</p>
-
-		</div>
-	</div>
-	<div class="row context" ng-show="poll.context">
-		<div class="col-md-12">
-			<div>{{poll.context}}</div>
-		</div>
-	</div>
-
-	<div class="row votes">
-
-		<div class="col-md-6" ng-show="poll.votes">
-			<canvas  id="doughnut" class="chart chart-doughnut" chart-data="data" chart-labels="labels"></canvas>
+		<div class="row context" ng-show="poll.context">
+			<div class="col-md-12">
+				<div>{{poll.context}}</div>
+			</div>
 		</div>
 
-		<div class="col-md-6" ng-hide="poll.votes">
-			<h3>There is no votes for this poll yet.</h3>
-		</div>
+		<div class="row votes">
 
-		<div class="col-md-6">
-
-			<div class="alert alert-success" role="alert" ng-show="messages.success">
-				<button type="button" class="close" aria-label="Close" ng-click="messages.success = null">
-					<span aria-hidden="true">&times;</span>
-				</button>
-
-				{{messages.success.detail}}
+			<div class="col-md-6" ng-show="poll.votes">
+				<canvas  id="doughnut" class="chart chart-doughnut" chart-data="data" chart-labels="labels"></canvas>
 			</div>
 
-			<div class="alert alert-danger" role="alert" ng-show="messages.error">
-				<button type="button" class="close" aria-label="Close" ng-click="messages.error = null">
-					<span aria-hidden="true">&times;</span>
-				</button>
-
-				{{messages.error.data.detail}}
-				<p ng-show="!messages.error.data">Can't connect to the server</p>
+			<div class="col-md-6" ng-hide="poll.votes">
+				<h3>There is no votes for this poll yet.</h3>
 			</div>
 
-			<p ng-repeat="label in poll.options.labels"> {{label}}</p>
+			<div class="col-md-6">
 
-			<ul class="options">
-				<li ng-repeat="option in poll.options" class="">
-					<p>{{option.optionText}}</p>
-					<ul>
-						<li><button class="btn btn-primary" ng-click="vote(option.id)">Vote {{option.optionText}}</button></li>
-						<li>Votes number: {{option.votes}}</li>
-						<li>Percentage: <strong>{{option.percentage}}%</strong></li>
-					</ul>
-				</li>
-			</ul>
+				<div class="alert alert-success" role="alert" ng-show="messages.success">
+					<button type="button" class="close" aria-label="Close" ng-click="messages.success = null">
+						<span aria-hidden="true">&times;</span>
+					</button>
 
+					{{messages.success.detail}}
+				</div>
+
+				<p ng-repeat="label in poll.options.labels"> {{label}}</p>
+
+				<ul class="options">
+					<li ng-repeat="option in poll.options" class="">
+						<p>{{option.optionText}}</p>
+						<ul>
+							<li><button class="btn btn-primary" ng-click="vote(option.id)">Vote {{option.optionText}}</button></li>
+							<li>Votes number: {{option.votes}}</li>
+							<li>Percentage: <strong>{{option.percentage}}%</strong></li>
+						</ul>
+					</li>
+				</ul>
+
+			</div>
 		</div>
 	</div>
 </div>
