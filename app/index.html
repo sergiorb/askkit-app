@@ -1,8 +1,16 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" ng-app="askkit-app">
   <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A voting system website">
+    <meta name="author" content="Sergio Romero Barra">
+
+    <link rel="icon" href="../../favicon.ico">
+
     <title>Askkit</title>
+
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css">
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
@@ -16,26 +24,43 @@
     <script src="js/services.js"></script>
     <script src="js/controllers.js"></script>
     <script src="js/app.js"></script>
+
   </head>
+
   <body>
-    <div class="container-fluid poll-detail">
 
-      <div class="row app-header">
-        <div class="col-md-12">
-         <p class="app-title"><span><a href="#/">Askkit.net</a></span> - A polling system website</p>
-         <a href="#/polls/create" class="btn btn-success">Createa new poll</a>
-        </br></br>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Askkit.net</a>
         </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#/about">What is this?</a></li>
+            <li><a href="#/polls">Polls</a></li>
+            <li><a href="#/polls/create">Create poll</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
       </div>
+    </nav>
 
-      <div class="row view-container">
-          <div class="col-md-12">
-            <div ng-view class="view-frame"></div>
-         </div>
-      </div>
-    </div>
+    <div class="container">
 
+      <div ng-view class="view-frame"></div>
+
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="bower_components/Chart.js/Chart.min.js"></script>
+    <script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
   </body>
-  <script src="bower_components/Chart.js/Chart.min.js"></script>
-  <script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
 </html>

@@ -4,8 +4,8 @@
         <button type="button" class="close" aria-label="Close" ng-click="messages.error = null">
           <span aria-hidden="true">&times;</span>
         </button>
-
         {{messages.error.data.detail}}
+        {{messages.error.statusText}}
     	<h4 ng-show="!messages.error.data">Can't connect to the server</h4>
     </div>
 

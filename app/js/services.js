@@ -6,7 +6,7 @@ var askkitServices = angular.module('askkitServices', ['ngResource']);
 
 askkitServices.factory('askkitConfig', function() {
 
-  var api_root = 'http://localhost:8000/';
+  var api_root = 'https://askkit.herokuapp.com/';
   var api_route = 'api/v1/';
 
   return {

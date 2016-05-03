@@ -12,6 +12,10 @@ var askkitApp = angular.module('askkit-app', [
 askkitApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
+      when('/about', {
+        templateUrl: 'partials/about.html',
+        controller: 'aboutCtrl'
+      }).
       when('/polls', {
         templateUrl: 'partials/poll-list.html',
         controller: 'pollListCtrl'

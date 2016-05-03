@@ -1,3 +1,7 @@
+body {
+  padding-top: 50px;
+}
+
 .alert {
 	text-align: center;
 }
@@ -6,18 +10,13 @@
 	margin: 0;
 }
 
-.app-header .app-title {
-	border-bottom: 1px solid gray;
-}
-
-.app-header .app-title span {
-	font-size: 2.1em;
+.view-frame {
+	margin-top: 20px;
 }
 
 .poll-list .header > div > p {
 	border-bottom: 1px solid gray;
 }
-
 
 .poll-detail .header {
 	text-align: center;

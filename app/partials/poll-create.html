@@ -1,33 +1,65 @@
 <div class="container-fluid poll-create">
 
-	<form class="form-horizontal" role="form" ng-submit="addPoll()">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="alert alert-info" role="alert" ng-show="info">
+				<button type="button" class="close" aria-label="Close" ng-click="info = null">
+					<span aria-hidden="true">&times;</span>
+				</button>
 
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Title</label>
-			<div class="col-sm-10">
-				<input type="text" ng-model="poll.title" class="form-control" placeholder="Poll Title Here"/>
+				<p>Hi, <strong>site developer here</strong>: By this time, you only can create simple anonymous polls. Soon, I will add more customization like "end date" or "anonymous voter alowed". <strong>Stay tune and thank you</strong> for using askkit.net!</p>
 			</div>
 		</div>
+	</div>
 
-		<div class="form-group options-header">
-			<label class="col-sm-2 control-label">Options</label>
-			<div class="col-sm-10">
-				<button ng-click="addOption()" type='button' class="btn btn-primary">Add option</button>
-				<button ng-click="removeOption()" ng-disabled="!canDeleteOption" type='button' class="btn btn-danger">Remove option</button>
+	<div class="row">
+		<div class="col-md-12">
+			
+			<div class="alert alert-danger" role="alert" ng-show="messages.error">
+				<button type="button" class="close" aria-label="Close" ng-click="messages.error = null">
+					<span aria-hidden="true">&times;</span>
+				</button>
+
+				{{messages.error.data.detail}}
+				{{messages.error.statusText}}
+				<h4 ng-show="!messages.error.data">Can't connect to the server</h4>
 			</div>
 		</div>
+	</div>
 
-		<div class="form-group options">
-			<div class="col-sm-offset-2 col-sm-10">
-				<div ng-repeat="option in poll.options" class="input-group">
-					<span class="input-group-addon">#{{$index+1}}</span>
-					<input type="text" ng-model="option.optionText" class="form-control"/>
+	<div class="row">
+		<div class="col-md-12">
+
+			<form class="form-horizontal" role="form" ng-submit="addPoll()">
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Title</label>
+					<div class="col-sm-10">
+						<input type="text" ng-model="poll.title" class="form-control" placeholder="Poll Title Here"/>
+					</div>
 				</div>
-			</div>
+
+				<div class="form-group options-header">
+					<label class="col-sm-2 control-label">Options</label>
+					<div class="col-sm-10">
+						<button ng-click="addOption()" type='button' class="btn btn-primary">Add option</button>
+						<button ng-click="removeOption()" ng-disabled="!canDeleteOption" type='button' class="btn btn-danger">Remove option</button>
+					</div>
+				</div>
+
+				<div class="form-group options">
+					<div class="col-sm-offset-2 col-sm-10">
+						<div ng-repeat="option in poll.options" class="input-group">
+							<span class="input-group-addon">#{{$index+1}}</span>
+							<input type="text" ng-model="option.optionText" class="form-control"/>
+						</div>
+					</div>
+				</div>
+				
+				<input class="btn btn-primary" type="submit" id="submit" value="Create" ng-disabled="!pollOk" />
+			</form>
 		</div>
-		
-		<button type="submit" class="btn btn-default">Submit</button>
-	</form>
+	</div>
 </div>
 
 
