@@ -63,8 +63,8 @@ askkitControllers.controller('pollDetailCtrl', ['$scope', '$routeParams', 'Poll'
 }]);
 
 
-askkitControllers.controller('pollCreateCtrl', ['$scope', '$routeParams', 'Poll', '$location',
-	function($scope, $routeParams, Poll, $location) {
+askkitControllers.controller('pollCreateCtrl', ['$scope', '$routeParams', 'Poll', '$uibModal',
+	function($scope, $routeParams, Poll, $uibModal) {
 
 		$scope.info = true;
 
@@ -77,29 +77,33 @@ askkitControllers.controller('pollCreateCtrl', ['$scope', '$routeParams', 'Poll'
 
 		$scope.poll = {
 			options : [{'optionText': ''},{'optionText': ''}]
-		}
+		};
 
 		
 		$scope.addOption = function() {
 			$scope.poll.options.push({'optionText': ''});
-		}
+		};
 
 		$scope.removeOption = function() {
 			$scope.poll.options.pop();	
-		}
+		};
+		
+		$scope.openCreateModal = function () {
 
-		$scope.addPoll = function() {
-
-			Poll.save($scope.poll, function(data){
-				$location.path("/polls/"+data.id);
-
-			}, function(error){
-				scope.messages.error = error;
+			$uibModal.open({
+				animation: true,
+				templateUrl: 'partials/createPollModal.html',
+				controller: 'createPollCtrl',
+				resolve: {
+					pollObj: function () {
+						return $scope.poll;
+					}
+				}
 			});
-			
 		}
 
 		var checkDeleteOption = function () {
+
 			$scope.canDeleteOption = false;
 			
 			if ($scope.poll.options.length > 2) {
@@ -108,6 +112,7 @@ askkitControllers.controller('pollCreateCtrl', ['$scope', '$routeParams', 'Poll'
 		};
 
 		var checkPollTitle = function () {
+
 			$scope.pollTitleOk = false;
 			
 			if($scope.poll.title != '' && $scope.poll.title != null) {
@@ -115,8 +120,9 @@ askkitControllers.controller('pollCreateCtrl', ['$scope', '$routeParams', 'Poll'
 			}
 		};
 
-		var checkPollOptions = function () {
-			$scope.pollOptionsOk = false;
+		var checkPollOptionsValue = function () {
+
+			$scope.pollOptionsValueOk = false;
 
 			for(var x=0; x < $scope.poll.options.length; x++) {
 
@@ -126,14 +132,31 @@ askkitControllers.controller('pollCreateCtrl', ['$scope', '$routeParams', 'Poll'
 				}
 			}
 
-			$scope.pollOptionsOk = true;
+			$scope.pollOptionsValueOk = true;
+		};
+
+		var checkPollOptionsDifferents = function () {
+
+			$scope.pollOptionsDifferentsOk = false;
+
+			for(var x=0; x < $scope.poll.options.length; x++) {
+				for(var i=0; i < $scope.poll.options.length; i++) {
+					if(x!= i) {
+						if($scope.poll.options[x].optionText.toLowerCase() == $scope.poll.options[i].optionText.toLowerCase()) {
+							return false
+						}
+					}
+				}
+			}
+
+			$scope.pollOptionsDifferentsOk = true;
 		};
 
 		var checkPollOk = function () {
 
 			$scope.pollOk = false;
 
-			if($scope.pollTitleOk && $scope.pollOptionsOk) {
+			if($scope.pollTitleOk && $scope.pollOptionsValueOk && $scope.pollOptionsDifferentsOk) {
 
 				$scope.pollOk = true;
 			}
@@ -142,9 +165,33 @@ askkitControllers.controller('pollCreateCtrl', ['$scope', '$routeParams', 'Poll'
 		$scope.$watch('poll', function () {
 			checkDeleteOption();
 			checkPollTitle();
-			checkPollOptions();
+			checkPollOptionsValue();
+			checkPollOptionsDifferents();
 			checkPollOk();
 		}, true);
+}]);
+
+askkitControllers.controller('createPollCtrl', ['$scope', '$uibModalInstance', '$location', 'Poll', 'pollObj',
+	function ($scope, $uibModalInstance, $location, Poll, pollObj) {
+
+  $scope.poll = pollObj;
+
+  $scope.create = function() {
+
+		Poll.save($scope.poll, function(data){
+			
+			$location.path("/polls/"+data.id);
+			$uibModalInstance.dismiss('cancel');
+
+		}, function(error){
+			console.log(error);
+		});
+		
+	};
+
+  $scope.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
 }]);
 
 

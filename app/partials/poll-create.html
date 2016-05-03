@@ -20,7 +20,7 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 
-				{{messages.error.data.detail}}
+				<p ng-repeat="field in messages.error.data">{{field}}</p>
 				{{messages.error.statusText}}
 				<h4 ng-show="!messages.error.data">Can't connect to the server</h4>
 			</div>
@@ -30,7 +30,7 @@
 	<div class="row">
 		<div class="col-md-12">
 
-			<form class="form-horizontal" role="form" ng-submit="addPoll()">
+			<form class="form-horizontal" role="form" ng-submit="openCreateModal()">
 
 				<div class="form-group">
 					<label class="col-sm-2 control-label">Title</label>

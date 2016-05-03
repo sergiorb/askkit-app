@@ -1,0 +1,16 @@
+<div class="modal-header">
+	<h3 class="modal-title">Are you sure you want to create this poll?</h3>
+</div>
+
+<div class="modal-body">
+	<p><strong>Question:</strong> {{poll.title}}</p>
+	<p><strong>Options:</strong></p>
+	<ul>
+		<li ng-repeat="option in poll.options">{{option.optionText}}</li>
+	</ul>
+</div>
+
+<div class="modal-footer">
+	<button class="btn btn-primary" type="button" ng-click="create()">Create poll</button>
+	<button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>

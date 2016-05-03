@@ -6,7 +6,8 @@ var askkitApp = angular.module('askkit-app', [
   'ngRoute',
   'askkitControllers',
   'askkitServices',
-  'chart.js'
+  'chart.js',
+  'ui.bootstrap'
 ]);
 
 askkitApp.config(['$routeProvider',
